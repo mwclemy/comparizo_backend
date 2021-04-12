@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.campground.belongsTo(models.user)
+      models.campground.hasMany(models.comment)
     }
   };
   campground.init({

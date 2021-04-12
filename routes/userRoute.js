@@ -1,8 +1,9 @@
 const express = require('express')
 const userRouter = express.Router()
-const { create, getAll, findOne, update, destroy, allCampgrounds, getCampground, createCampground, updateCampground } = require('../controllers/userController')
+const { create, login, getAll, findOne, update, destroy, allCampgrounds, getCampground, createCampground, updateCampground } = require('../controllers/userController')
 
 userRouter.post('/', create)
+userRouter.post('/login', login)
 userRouter.get('/', getAll)
 userRouter.get('/:id', findOne)
 userRouter.put('/:id', update)

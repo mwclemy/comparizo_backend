@@ -23,6 +23,36 @@ userController.create = async (req, res) => {
 
 }
 
+userController.login = async (req, res) => {
+    try {
+        const user = await models.user.findOne(
+            {
+                where: {
+                    email: req.body.email
+                }
+            })
+
+        if (user.password === req.body.password) {
+            res.json({
+                message: 'login success',
+                user
+            })
+        }
+        else {
+            res.status(401)
+            res.json({
+                message: 'login failed.'
+            })
+        }
+    } catch (error) {
+        res.status(400)
+        res.json({
+            message: 'login failed.'
+        })
+    }
+
+}
+
 userController.getAll = async (req, res) => {
     try {
         const users = await models.user.findAll()

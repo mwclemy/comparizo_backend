@@ -1,4 +1,5 @@
 const models = require('../models')
+const campgroundRouter = require('../routes/campgroundRoute')
 const campgroundController = {}
 
 
@@ -16,6 +17,26 @@ campgroundController.getAll = async (req, res) => {
     }
 
 
+}
+
+campgroundController.getComments = async (req, res) => {
+    try {
+        const campgroundId = req.params.id
+        const campground = await models.campground.findOne({
+            where: {
+                id: campgroundId
+            }
+        })
+        const comments = await campground.getComments()
+        res.json({
+            comments
+        })
+    } catch (error) {
+        res.status(400)
+        res.json({
+            message: 'something went wrong.'
+        })
+    }
 }
 
 
