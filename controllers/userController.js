@@ -144,7 +144,7 @@ userController.allCampgrounds = async (req, res) => {
             }
         )
 
-        const campgrounds = await user.getCampgrounds()
+        const campgrounds = await user.getCampgrounds({ include: models.user })
         res.json({
             campgrounds
         })

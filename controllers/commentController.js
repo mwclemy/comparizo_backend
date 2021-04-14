@@ -3,13 +3,15 @@ const commentController = {}
 
 commentController.create = async (req, res) => {
     try {
-        const { text, userId, campgroundId } = req.body
+        const { text, userId, campgroundId, submittedBy } = req.body
         const comment = await models.comment.create(
             {
                 text: text,
                 userId: userId,
-                campgroundId: campgroundId
+                campgroundId: campgroundId,
+                submittedBy: submittedBy
             }
+
         )
 
         res.json({

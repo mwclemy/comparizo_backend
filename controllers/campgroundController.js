@@ -5,7 +5,7 @@ const campgroundController = {}
 
 campgroundController.getAll = async (req, res) => {
     try {
-        const campgrounds = await models.campground.findAll()
+        const campgrounds = await models.campground.findAll({ include: models.user })
         res.json({
             campgrounds
         })
@@ -27,7 +27,7 @@ campgroundController.getComments = async (req, res) => {
                 id: campgroundId
             }
         })
-        const comments = await campground.getComments()
+        const comments = await campground.getComments({ include: models.user })
         res.json({
             comments
         })
